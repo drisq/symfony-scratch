@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+
+  phpfpm:
+    build: ./phpfpm
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./:/var/www/symfony-scratch
+
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/symfony-scratch
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
